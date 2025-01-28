@@ -7,8 +7,7 @@
     "scripts": {
       "start": "node server.js",
       "dev": "nodemon server.js",
-      "lint": "eslint .",
-      "test": "jest"
+      "lint": "eslint ."
     },
     "keywords": ["reservation", "API", "Node.js", "MongoDB", "Express"],
     "author": "Vipul Mehra",
