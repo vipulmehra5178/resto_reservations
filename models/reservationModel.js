@@ -19,7 +19,6 @@ const reservationSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (value) => {
-        // Accept date strings like YYYY-MM-DD
         const inputDate = new Date(value);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -31,8 +30,6 @@ const reservationSchema = new mongoose.Schema({
   time: {
     type: String,
     required: true,
-    // Loosen the regex, just expect something like HH:mm 24h format after normalization
-    // Will normalize before save
   },
   outlet: {
     type: String,
@@ -46,7 +43,7 @@ const reservationSchema = new mongoose.Schema({
   },
   customization: {
     type: String,
-    required: false, // made optional, free text allowed
+    required: false, 
   },
 });
 
