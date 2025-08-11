@@ -11,6 +11,7 @@ const connectDB = async (retries = 5) => {
       retries -= 1;
       console.log(`Retries left: ${retries}`);
       await new Promise(r => setTimeout(r, 3000)); 
+    }
   }
   if (!retries) {
     console.error("❌ Could not connect to MongoDB, exiting...");
