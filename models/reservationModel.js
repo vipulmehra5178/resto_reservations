@@ -6,13 +6,13 @@ const reservationSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // Email validation
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 
   },
   phone: {
     type: String,
     required: true,
     trim: true,
-    match: /^\d{10}$/, // 10-digit phone number validation
+    match: /^\d{10}$/,
   },
   date: {
     type: String,
@@ -25,7 +25,7 @@ const reservationSchema = new mongoose.Schema({
   time: {
     type: String,
     required: true,
-    match: /^([01]\d|2[0-3]):([0-5]\d)$/, // HH:mm format validation
+    match: /^([01]\d|2[0-3]):([0-5]\d)$/, 
   },
   outlet: {
     type: String,
