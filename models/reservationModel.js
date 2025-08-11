@@ -6,7 +6,7 @@ const reservationSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
   },
   phone: {
     type: String,
@@ -18,14 +18,21 @@ const reservationSchema = new mongoose.Schema({
     type: String,
     required: true,
     validate: {
-      validator: (value) => new Date(value) >= new Date(),
+      validator: (value) => {
+        // Accept date strings like YYYY-MM-DD
+        const inputDate = new Date(value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return inputDate >= today;
+      },
       message: "Date must not be in the past.",
     },
   },
   time: {
     type: String,
     required: true,
-    match: /^([01]\d|2[0-3]):([0-5]\d)$/, 
+    // Loosen the regex, just expect something like HH:mm 24h format after normalization
+    // Will normalize before save
   },
   outlet: {
     type: String,
@@ -35,20 +42,11 @@ const reservationSchema = new mongoose.Schema({
   persons: {
     type: String,
     required: true,
-    enum: ["1", "2", "3", "4+"],
+    enum: ["2", "3", "4", "5+"],
   },
   customization: {
     type: String,
-    required: true,
-    enum: [
-      "Window Seat",
-      "High Chair",
-      "Outdoor Seating",
-      "Birthday Setup",
-      "Anniversary Setup",
-      "Date Setup",
-      "Other",
-    ],
+    required: false, // made optional, free text allowed
   },
 });
 
